@@ -1,5 +1,9 @@
 class_name Player extends CharacterBody2D
 
+#region /// export variables
+@export var move_speed : float = 150
+#endregion
+
 
 #region /// State Machine Variables
 var states : Array[PlayerState]
@@ -29,6 +33,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _process(_delta: float) -> void:
+	update_direction()
 	change_state( current_state.process( _delta ) )
 	pass
 

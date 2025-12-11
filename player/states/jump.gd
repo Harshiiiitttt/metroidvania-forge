@@ -1,4 +1,6 @@
-class_name PlayerStateIdle extends PlayerState
+class_name PlayerStateJump extends PlayerState
+
+@export var jump_velocity : float = 450
 
 
 
@@ -10,6 +12,7 @@ func init() -> void:
 # what happens when we enter this state?
 func enter() -> void:
 	# play animation
+	player.velocity.y = -jump_velocity
 	pass
 
 
@@ -21,19 +24,20 @@ func exit() -> void:
 # What happens when an input is pressed?
 func handle_input(_event : InputEvent) -> PlayerState:
 	# handle input
-	if _event.is_action_pressed("jump"):
-		return jump
 	return next_state
 	
 	
 # What happens each process tick in this state?
 func process(_delta: float) -> PlayerState:
-	if player.directions.x != 0:
-		return run
+
 	return next_state
 	
 	
 # What happens each physiscs_process tick in this state?
 func physics_process(_delta: float) -> PlayerState:
-	player.velocity.x = 0
+	if player.is_on_floor():
+		return idle
+	elif player.velocity.y >= 0:
+		return fall
+	player.velocity.x = player.directions.x * player.move_speed
 	return next_state
