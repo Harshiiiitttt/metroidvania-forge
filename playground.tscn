@@ -1,10 +1,10 @@
 [gd_scene load_steps=2 format=3 uid="uid://8lidg4hqe43w"]
 
-[ext_resource type="Texture2D" uid="uid://dd860n3iw55m1" path="res://icon.svg" id="1_rupst"]
+[ext_resource type="Texture2D" uid="uid://bbkm7rk1na3u5" path="res://LOGO.png" id="2_wt17y"]
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(219, 113)
-scale = Vector2(0.9453125, 0.91406256)
-texture = ExtResource("1_rupst")
+[node name="Logo" type="Sprite2D" parent="."]
+position = Vector2(254.00002, 131)
+scale = Vector2(0.3369141, 0.3369141)
+texture = ExtResource("2_wt17y")
