@@ -3,7 +3,6 @@ class_name PlayerStateJump extends PlayerState
 @export var jump_velocity : float = 450
 
 
-
 #  What happens when the state is initialized?
 func init() -> void:
 	pass
