@@ -36,4 +36,6 @@ func process(_delta: float) -> PlayerState:
 # What happens each physiscs_process tick in this state?
 func physics_process(_delta: float) -> PlayerState:
 	player.velocity.x = 0
+	if player.is_on_floor() == false:
+		return fall
 	return next_state
