@@ -9,11 +9,9 @@ func init() -> void:
 	
 # what happens when we enter this state?
 func enter() -> void:
-	# play animation
+	player.animation_player.play("crouch")
 	player.collision_stand.disabled = true
 	player.collision_crouch.disabled = false
-	player.sprite.scale.y = 0.625
-	player.sprite.position.y = -15
 	pass
 
 
@@ -21,8 +19,6 @@ func enter() -> void:
 func exit() -> void:
 	player.collision_stand.disabled = false
 	player.collision_crouch.disabled = true
-	player.sprite.scale.y = 1.0
-	player.sprite.position.y = -24
 	pass
 	
 
