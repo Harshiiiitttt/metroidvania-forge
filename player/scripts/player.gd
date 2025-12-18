@@ -7,13 +7,14 @@ const DEBUG_JUMP_INDICATOR = preload("uid://bjim3r6tafw28")
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var collision_stand: CollisionShape2D = $CollisionStand
 @onready var collision_crouch: CollisionShape2D = $CollisionCrouch
-@onready var one_way_platform_raycast: RayCast2D = $OneWayPlatformRaycast
+@onready var one_way_platform_shape_cast: ShapeCast2D = $OneWayPlatformShapeCast
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 #endregion
 
 
 #region /// export variables
-@export var move_speed : float = 150
+@export var move_speed : float = 150.0
+@export var max_fall_speed : float = 600.0
 #endregion
 
 
@@ -54,6 +55,7 @@ func _process(_delta: float) -> void:
 
 func _physics_process(_delta: float) -> void:
 	velocity.y += gravity * _delta * gravity_multiplier
+	velocity.y = clampf(velocity.y, -1000.0, max_fall_speed )
 	move_and_slide()
 	change_state( current_state.physics_process( _delta ) )
 	pass
@@ -110,7 +112,7 @@ func update_direction() -> void:
 	if prev_direction.x != directions.x:
 		if directions.x < 0:
 			sprite.flip_h = true
-		if directions.x > 0:
+		elif directions.x > 0:
 			sprite.flip_h = false
 	pass
 
