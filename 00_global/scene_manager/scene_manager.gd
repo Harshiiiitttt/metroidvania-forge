@@ -23,7 +23,7 @@ func transition_scene(new_scene : String, target_area : String, player_offset : 
 	
 	await get_tree().scene_changed
 	
-	new_scene_ready.emit()
+	new_scene_ready.emit(target_area, player_offset)
 
 	# fade new scene in 
 	
